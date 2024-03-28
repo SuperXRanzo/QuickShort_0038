@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 int arr[20];
 int cmp_count = 0;
 int mov_count = 0;
@@ -17,6 +18,7 @@ void input() {
         else
             cout << "\nMaksimum panjang array adalah 20" << endl;
     }
+
     cout << "\n-------------------" << endl;
     cout << "\nEnter Array Element" << endl;
     cout << "\n-------------------" << endl;
@@ -27,6 +29,7 @@ void input() {
         cin >> arr[i];
     }
 }
+
 void swap(int x, int y)
 {
     int temp = arr[x];
@@ -42,34 +45,50 @@ void q_short(int low, int high)
 
     int temp;
     int pivot, i, j;
-    if (low > high) {
+    if (low > high) { 
         return;
     }
-    pivot = arr[low];
-    i = low + 1;
-    j = high;
 
-    while (i <= j)
-        while ((arr[i] <= pivot) && (i <= high))
+    pivot = arr[low]; 
+    i = low + 1; 
+    j = high;   
+
+
+    while (i <= j) 
+    {
+        
+        while ((arr[i] <= pivot) && (i <= high)) 
         {
-            i++;
+            i++; 
             cmp_count++;
         }
-    cmp_count++;
-
-    while ((arr[j] > pivot) && (j >= low))
-    {
-        j--;
         cmp_count++;
+        
+        while ((arr[j] > pivot) && (j >= low))  
+        {
+            j--; 
+            cmp_count++;
+        }
+        cmp_count++;
+        if (i < j) 
+        {
+            
+            swap(i, j);
+        }
     }
-    cmp_count++;
-    if (i < j)
-    {
-        swap(i, j);
+
+    if (low < j) { 
+        swap(low, j);
     }
+
+    
+    q_short(low, j - 1); 
+
+    
+
+    q_short(j + 1, high); 
+
+
 }
 
-if (low < j) {
 
-    swap(low, j);
-}
